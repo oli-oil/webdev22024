@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratory - Oli</title>
+</head>
+<body>
+    <div id="lab"></div>
+    <script>
+
+// TASK 1
+
+    let listNumbers = [37,39,18,93,87,29,3,6,66,65,72,12,97,13];
+
+    function isOdd(number) {
+        return new Promise((resolve, reject)=> {
+            if (number % 2 == 0) {
+                console.log("Rejected, Even: ", number);
+            }
+            else {
+                console.log("Resolved, Odd: ", number);
+            }
+        });
+    }
+
+    function iterate(list) {
+        for (let i = 0; i < list.length; i++) {
+            isOdd(list[i]);
+        }
+    }
+
+    iterate(listNumbers);
+
+// TASK 2 
+
+    function getRandomCharacter() {
+        return new Promise((resolve, reject)=> {
+            setTimeout(()=> {
+                let syllabary = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                let picker = Math.floor(Math.random() * syllabary.length);
+                resolve (syllabary[picker])
+            }, 500);
+        })
+    }
+
+    getRandomCharacter()
+    .then(character => {
+        console.log("Resolved - Character: ", character);
+    })
+    .catch(error => {
+        console.log("Rejected - Character: ", error);
+    })
+
+// Task 3
+
+    function getData() {
+        return new Promise ((resolve, reject)=> {
+            setTimeout (()=> {
+                let randomData = Math.floor(Math.random () * 100);
+                reject(randomData)
+            }, 500);
+        })
+    }
+
+    getData()
+    .then(character => {
+        console.log("Resolved - Data: ", character);
+    })
+    .catch(error => {
+        console.log("Rejected - Data: ", error);
+    });
+
+// Task 4
+
+    function rejectResolve() {
+        return new Promise ((reject, resolve)=> {
+            setTimeout(()=> {
+                for (let i = 0; i < 2; i++){
+                    if (i === 1) {
+                        console.log("Resolve Function: 4");
+                    } else {
+                        console.log("Rejected Function: 4");
+                    }
+                }
+            }, 500);
+        });
+    }
+
+    rejectResolve()
+    </script>
+</body>
+</html>
